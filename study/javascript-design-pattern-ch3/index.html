@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="上進,程式,programming,資訊" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -96,16 +96,18 @@
 
 
 
-<meta name="description" content="不要睡了，起來上進">
-<meta property="og:type" content="website">
-<meta property="og:title" content="鳥居">
-<meta property="og:url" content="https://kiddkid99.github.io/index.html">
+<meta name="description" content="物件實字 實字符號模式(literal notation patterns)，可以有更簡潔、較不易出錯的物件定義方式。 JavaScript 的物件是一個 key-value pairs 的雜湊表，物件的值可以是原始型別或物件（稱為屬性）以及函式（稱為方法） Javascript 建立的物件，在任何時間都是可變的（mutable）。  物件實字語法 1234567var person = &amp;#12">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 設計模式(筆記)_CH3_實字與建構式">
+<meta property="og:url" content="https://kiddkid99.github.io/study/javascript-design-pattern-ch3/index.html">
 <meta property="og:site_name" content="鳥居">
-<meta property="og:description" content="不要睡了，起來上進">
+<meta property="og:description" content="物件實字 實字符號模式(literal notation patterns)，可以有更簡潔、較不易出錯的物件定義方式。 JavaScript 的物件是一個 key-value pairs 的雜湊表，物件的值可以是原始型別或物件（稱為屬性）以及函式（稱為方法） Javascript 建立的物件，在任何時間都是可變的（mutable）。  物件實字語法 1234567var person = &amp;#12">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-08-17T14:40:46.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鳥居">
-<meta name="twitter:description" content="不要睡了，起來上進">
+<meta name="twitter:title" content="JavaScript 設計模式(筆記)_CH3_實字與建構式">
+<meta name="twitter:description" content="物件實字 實字符號模式(literal notation patterns)，可以有更簡潔、較不易出錯的物件定義方式。 JavaScript 的物件是一個 key-value pairs 的雜湊表，物件的值可以是原始型別或物件（稱為屬性）以及函式（稱為方法） Javascript 建立的物件，在任何時間都是可變的（mutable）。  物件實字語法 1234567var person = &amp;#12">
 
 
 
@@ -134,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://kiddkid99.github.io/"/>
+  <link rel="canonical" href="https://kiddkid99.github.io/study/javascript-design-pattern-ch3/"/>
 
 
 
 
 
-  <title>鳥居</title>
+  <title>JavaScript 設計模式(筆記)_CH3_實字與建構式 | 鳥居</title>
   
 
 
@@ -174,9 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,9 +269,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -301,9 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/study/javascript-design-pattern-ch3/" itemprop="url">JavaScript 設計模式(筆記)_CH3_實字與建構式</a></h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript 設計模式(筆記)_CH3_實字與建構式</h1>
         
 
         <div class="post-meta">
@@ -386,9 +384,7 @@
       
 
       
-        
-          
-            <h2 id="物件實字"><a href="#物件實字" class="headerlink" title="物件實字"></a>物件實字</h2><ul>
+        <h2 id="物件實字"><a href="#物件實字" class="headerlink" title="物件實字"></a>物件實字</h2><ul>
 <li>實字符號模式(<em>literal notation patterns</em>)，可以有更簡潔、較不易出錯的物件定義方式。</li>
 <li>JavaScript 的物件是一個 <em>key-value pairs</em> 的<a href="https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E8%A1%A8" target="_blank" rel="external">雜湊表</a>，物件的值可以是原始型別或物件（稱為<em>屬性</em>）以及函式（稱為<em>方法</em>）</li>
 <li>Javascript 建立的物件，在任何時間都是可變的（<em>mutable</em>）。</li>
@@ -478,8 +474,6 @@
 <li>也可以拋出自定義的物件，不一定要是個錯誤物件。</li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -494,385 +488,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kiddkid99.github.io/study/javascript-design-pattern-ch2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kidd Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳥居">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/study/javascript-design-pattern-ch2/" itemprop="url">JavaScript 設計模式(筆記)_CH2_精要</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-02T22:03:15+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/study/" itemprop="url" rel="index">
-                    <span itemprop="name">讀書筆記</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/study/javascript-design-pattern-ch2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="study/javascript-design-pattern-ch2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="撰寫可維護的程式碼"><a href="#撰寫可維護的程式碼" class="headerlink" title="撰寫可維護的程式碼"></a>撰寫可維護的程式碼</h2><ul>
-<li>可讀性</li>
-<li>一致性</li>
-<li>可預料的</li>
-<li>看起來要像是同一個人寫的</li>
-<li>文件化</li>
-</ul>
-<h2 id="減少全域變數"><a href="#減少全域變數" class="headerlink" title="減少全域變數"></a>減少全域變數</h2><p>減少全域變數的策略，使用命名空間模式、或是自我執行的立即函式。最重要的還是記得使用 var 宣告變數。</p>
-<p>遺漏 var 的副作用, 能否使用 delete 刪除變數</p>
-<ul>
-<li>用 var 創造出的全域變數不可以刪除</li>
-<li>不使用 var 隱含創造出的可以刪除(全域物件的屬性)  </li>
-</ul>
-<p>單一 var 模式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">1</span>,</div><div class="line">	    b = <span class="number">2</span>,</div><div class="line">	    c = <span class="number">3</span>,</div><div class="line">	    sum = a + b + c;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Hoisting: 分散的 var 造成的問題</p>
-<h2 id="for-迴圈"><a href="#for-迴圈" class="headerlink" title="for 迴圈"></a>for 迴圈</h2><p>通常的迴圈使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</div><div class="line">    <span class="comment">// do somethint.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如果 array 不是一個陣列而是一個 HTMLCollection 物件<br>HTMLCollection 是 DOM 方法回傳的一種物件</p>
-<ul>
-<li>document.getElementByName()</li>
-<li>document.getElementByClassName()</li>
-<li>document.getElementByTagName()</li>
-</ul>
-<p>或是已經存在標準 DOM 的物件</p>
-<ul>
-<li>document.images</li>
-<li>document.links</li>
-<li>document.forms</li>
-<li>document.form[0].elements</li>
-</ul>
-<p>若每次都針對這些物件集合存取長度，操作很昂貴，因此可使用預先計算陣列（或集合）長度的模式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">var i = <span class="number">0</span>, max = array.length; i &lt; max; i++</span>)</span>&#123;</div><div class="line">    <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>另外兩種變形模式<br>第一種<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i, array = [];</div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = array.length; i--)&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>第二種<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array = [],</div><div class="line">    i = array.length;</div><div class="line"></div><div class="line"><span class="keyword">while</span>(i--)&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="for-in-迴圈"><a href="#for-in-迴圈" class="headerlink" title="for-in 迴圈"></a>for-in 迴圈</h2><p>用來重複整個整個非陣列物件，又稱為<em>列舉 (enumeration)</em></p>
-<p>不建議在陣列上使用 for-in 迴圈，可能會發生邏輯錯誤。</p>
-<p>重要：使用 hasOwnProperty() 方法過濾掉來自原型鍊 (prototype chain) 的屬性</p>
-<p>若要避免命名衝突，可透過 Object.prototype 呼叫，例如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> man = &#123;</div><div class="line">    hands:<span class="number">2</span>,</div><div class="line">    legs:<span class="number">2</span>,</div><div class="line">    heads:<span class="number">1</span>	</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> man)&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">Object</span>.prototype.hasOwnProperty.call(man, i))&#123;</div><div class="line">    	<span class="built_in">console</span>.log(i, <span class="string">":"</span>, man[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="不要擴充內建型別的原型"><a href="#不要擴充內建型別的原型" class="headerlink" title="不要擴充內建型別的原型"></a>不要擴充內建型別的原型</h2><p>會嚴重傷害程式的可維護性，因為難以預測</p>
-<p>switch 模式：提昇可讀性及穩健性</p>
-<h2 id="避免隱含的型別轉換"><a href="#避免隱含的型別轉換" class="headerlink" title="避免隱含的型別轉換"></a>避免隱含的型別轉換</h2><p>應該使用 === 和 !== 運算子來比較，可以同時比較運算結果的型別跟值</p>
-<h3 id="避免使用-eval"><a href="#避免使用-eval" class="headerlink" title="避免使用 eval()"></a>避免使用 eval()</h3><blockquote>
-<p>eval() 是邪惡的</p>
-</blockquote>
-<h2 id="使用-parseint-轉型成數值"><a href="#使用-parseInt-轉型成數值" class="headerlink" title="使用 parseInt() 轉型成數值"></a>使用 parseInt() 轉型成數值</h2><p>可以用 parseInt() 將一個字串轉型成數值，第二個參數是轉型時使用的基數，避免非預期結果，使用時應該加入此參數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> month = <span class="string">"06"</span>,</div><div class="line">    year = <span class="string">"09"</span>;</div><div class="line"></div><div class="line">month = <span class="built_in">parseInt</span>(month, <span class="number">10</span>);</div><div class="line">year = <span class="built_in">parseInt</span>(year, <span class="number">10</span>);</div></pre></td></tr></table></figure></p>
-<h2 id="編碼規範"><a href="#編碼規範" class="headerlink" title="編碼規範"></a>編碼規範</h2><p>縮排：可預測，增加可讀性</p>
-<p>大括、左括號的位置：使用大括號，將左括號置於同一行</p>
-<p>空格</p>
-<h2 id="命名慣例"><a href="#命名慣例" class="headerlink" title="命名慣例"></a>命名慣例</h2><p>讓建構式開頭字母大寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> kidd = <span class="keyword">new</span> Person();</div></pre></td></tr></table></figure></p>
-<p>字詞的分隔方式：駝峰式命名法（camel case）</p>
-<p>其他命名模式</p>
-<ul>
-<li>全部大寫：不會改變的變數、全域變數</li>
-<li>_private：模擬私有變數</li>
-</ul>
-<h2 id="撰寫-api-文件"><a href="#撰寫-API-文件" class="headerlink" title="撰寫 API 文件"></a>撰寫 API 文件</h2><ul>
-<li><a href="http://code.google.com/p/jsdoc-toolkit" target="_blank" rel="external">JSDoc Toolkit</a></li>
-<li><a href="http://yuilibrary.com/projects/yuidoc" target="_blank" rel="external">YUIDoc</a></li>
-</ul>
-<p>API 文件的生成過程</p>
-<ol>
-<li>特別格式的程式碼</li>
-<li>執行工具分析程式碼</li>
-<li>發佈工具產生的結果</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kiddkid99.github.io/life/first-post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kidd Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳥居">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/life/first-post/" itemprop="url">而立之年的一大里程碑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-02T21:30:03+08:00">
-                2017-08-02
-              </time>
+              <a href="/study/javascript-design-pattern-ch2/" rel="next" title="JavaScript 設計模式(筆記)_CH2_精要">
+                <i class="fa fa-chevron-left"></i> JavaScript 設計模式(筆記)_CH2_精要
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/life/first-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="life/first-post/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>不要睡了</p>
-<p>起來上進</p>
-<p>發財</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -882,10 +527,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -893,6 +539,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -913,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -976,6 +642,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物件實字"><span class="nav-number">1.</span> <span class="nav-text">物件實字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自訂建構式函式"><span class="nav-number">2.</span> <span class="nav-text">自訂建構式函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#強制-new-的模式"><span class="nav-number">3.</span> <span class="nav-text">強制 new 的模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#陣列實字"><span class="nav-number">4.</span> <span class="nav-text">陣列實字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json"><span class="nav-number">5.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正規表示式實字"><span class="nav-number">6.</span> <span class="nav-text">正規表示式實字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原始型別包裹"><span class="nav-number">7.</span> <span class="nav-text">原始型別包裹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#錯誤物件"><span class="nav-number">8.</span> <span class="nav-text">錯誤物件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1089,10 +771,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -1110,6 +792,18 @@
       <script id="dsq-count-scr" src="https://kiddkid99.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://kiddkid99.github.io/study/javascript-design-pattern-ch3/';
+          this.page.identifier = 'study/javascript-design-pattern-ch3/';
+          this.page.title = 'JavaScript 設計模式(筆記)_CH3_實字與建構式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kiddkid99.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
