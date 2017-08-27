@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="XqsMgpyQtAOWbSRBPgPFC2vpzu8NYshbzQBYne0ehhs" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="背景 函式是 JavaScript 第一級物件（first-class object）。 函式提供作用域。 函式也是物件。  釐清術語的差異 具名函式表示式（named function expression）。  123var add = function add(a, b)&amp;#123;	return a + b;&amp;#125;;  匿名函式（anonymous function）。  123va">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 設計模式(筆記)_CH4_函式">
+<meta property="og:url" content="https://kiddkid99.github.io/study/javascript-design-pattern-ch4/index.html">
+<meta property="og:site_name" content="鳥居">
+<meta property="og:description" content="背景 函式是 JavaScript 第一級物件（first-class object）。 函式提供作用域。 函式也是物件。  釐清術語的差異 具名函式表示式（named function expression）。  123var add = function add(a, b)&amp;#123;	return a + b;&amp;#125;;  匿名函式（anonymous function）。  123va">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-08-27T15:07:27.667Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 設計模式(筆記)_CH4_函式">
+<meta name="twitter:description" content="背景 函式是 JavaScript 第一級物件（first-class object）。 函式提供作用域。 函式也是物件。  釐清術語的差異 具名函式表示式（named function expression）。  123var add = function add(a, b)&amp;#123;	return a + b;&amp;#125;;  匿名函式（anonymous function）。  123va">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kiddkid99.github.io/study/javascript-design-pattern-ch4/"/>
+
+
+
+
+
+  <title>JavaScript 設計模式(筆記)_CH4_函式 | 鳥居</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104087660-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鳥居</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不要睡了，起來上進</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kiddkid99.github.io/study/javascript-design-pattern-ch4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kidd Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳥居">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript 設計模式(筆記)_CH4_函式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-27T23:07:27+08:00">
+                2017-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/study/" itemprop="url" rel="index">
+                    <span itemprop="name">讀書筆記</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/study/javascript-design-pattern-ch4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="study/javascript-design-pattern-ch4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>函式是 JavaScript 第一級物件（<em>first-class object</em>）。</li>
+<li>函式提供作用域。</li>
+<li>函式也是物件。</li>
+</ul>
+<h2 id="釐清術語的差異"><a href="#釐清術語的差異" class="headerlink" title="釐清術語的差異"></a>釐清術語的差異</h2><ul>
+<li>具名函式表示式（<em>named function expression</em>）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>匿名函式（<em>anonymous function</em>）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>函式宣告式（<em>function declaration</em>）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>宣告式 vs 表示式：命名與 Hoisting</p>
+<p>函式的 name 屬性</p>
+<p>函式的 Hoisting</p>
+<h2 id="回呼模式"><a href="#回呼模式" class="headerlink" title="回呼模式"></a>回呼模式</h2><ul>
+<li>將函式當成參數傳遞給其他的函式呼叫，簡稱回呼（<em>callback</em>）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>)</span>&#123;</div><div class="line">	</div><div class="line">    <span class="comment">//do something.</span></div><div class="line"></div><div class="line">    callback();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用匿名函式</span></div><div class="line">foo(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"This is callback."</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>回呼與作用域</p>
+<ul>
+<li>如果回呼的方法使用 <code>this</code> 參考所屬物件，會發生非預期的行為。</li>
+<li>必須把 <code>this</code> 所屬的物件也傳入回呼函式的參數中。</li>
+<li>改用 <code>call()</code> 或 <code>apply()</code> 的方式來榜定呼叫。 </li>
+</ul>
+<p>非同步事件監聽器</p>
+<ul>
+<li>事件監聽器（<em>event listener</em>）是一個回呼函式指標。</li>
+</ul>
+<p>逾時</p>
+<ul>
+<li><code>setTimeout()</code> 及 <code>setInterval()</code> </li>
+</ul>
+<h2 id="回傳函式"><a href="#回傳函式" class="headerlink" title="回傳函式"></a>回傳函式</h2><ul>
+<li>函式回傳一個函式。</li>
+<li>產生閉包（<em>closure</em>），可以儲存一些 private 資料。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//一個計數器的範例</span></div><div class="line"><span class="keyword">var</span> counterSetup = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> (count += <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> counter = counterSetup();</div><div class="line">counter(); <span class="comment">//回傳1</span></div><div class="line">counter(); <span class="comment">//回傳2</span></div><div class="line">counter(); <span class="comment">//回傳3</span></div></pre></td></tr></table></figure>
+<h2 id="自我定義的函式"><a href="#自我定義的函式" class="headerlink" title="自我定義的函式"></a>自我定義的函式</h2><h2 id="立即函式"><a href="#立即函式" class="headerlink" title="立即函式"></a>立即函式</h2><ul>
+<li>定義函式時立即執行</li>
+<li>提供一種作用域的 <em>沙盒</em> 給初始化的程式碼。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   </div><div class="line">   alert(<span class="string">"hello world"</span>);</div><div class="line"></div><div class="line">&#125;())</div></pre></td></tr></table></figure>
+<p>立即函式的參數</p>
+<ul>
+<li>一般使用全域物件作為參數傳遞，函式內部就可存取。</li>
+<li>不該傳遞太多參數</li>
+</ul>
+<p>立即函式的回傳值</p>
+<ul>
+<li>可利用立即函式的作用域儲存 private 資料。</li>
+<li>可用來定義屬性</li>
+</ul>
+<p>優點及用法</p>
+<ul>
+<li>將運算包裝起來，不必留下全域變數。</li>
+<li>功能模組化</li>
+</ul>
+<h2 id="立即物件初始化"><a href="#立即物件初始化" class="headerlink" title="立即物件初始化"></a>立即物件初始化</h2><ul>
+<li>使用物件實字定義物件之後在立即執行所定義的初始化函式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">(&#123;</div><div class="line">    <span class="comment">//定義物件屬性</span></div><div class="line"></div><div class="line">    <span class="comment">//初始化函式</span></div><div class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">//初始工作</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;).init();</div></pre></td></tr></table></figure>
+<h2 id="初始階段的分支"><a href="#初始階段的分支" class="headerlink" title="初始階段的分支"></a>初始階段的分支</h2><ul>
+<li>初始階段（<em>Init-time</em>），也稱為讀取階段（<em>load-time</em>）</li>
+<li>某個條件，在整個程式生命週期都不會改變，只檢查一次。</li>
+<li>瀏覽器偵測或功能檢測的例子。</li>
+</ul>
+<h2 id="函式屬性-記憶模式"><a href="#函式屬性-記憶模式" class="headerlink" title="函式屬性 - 記憶模式"></a>函式屬性 - 記憶模式</h2><ul>
+<li>函式可以新增屬性，可以用來儲存某個運算候的結果，下次在呼叫時就不需要再運算</li>
+<li>function 使用 cache 的例子。</li>
+</ul>
+<h2 id="設定值物件"><a href="#設定值物件" class="headerlink" title="設定值物件"></a>設定值物件</h2><ul>
+<li>一個函式的參數使用一個物件參數當作設定值物件。</li>
+</ul>
+<h2 id="curry"><a href="#Curry" class="headerlink" title="Curry"></a>Curry</h2><p>函式的應用</p>
+<ul>
+<li>函式應用（<em>applied</em>），可以使用 <code>Function.prototype.apply()</code> 方法來應用一個函式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sayHi = <span class="function"><span class="keyword">function</span>(<span class="params">who</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="string">"Hello "</span> + who;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//應用函式</span></div><div class="line">sayHi.apply(<span class="literal">null</span>, [<span class="string">"Kidd"</span>]) <span class="comment">//"Hello Kidd"</span></div></pre></td></tr></table></figure>
+<p>部份應用</p>
+<p>Currying</p>
+<ul>
+<li>一種函式的轉換過程。</li>
+<li>用現有的函式加上部份的參數列產生新的函式。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/study/javascript-design-pattern-ch3/" rel="next" title="JavaScript 設計模式(筆記)_CH3_實字與建構式">
+                <i class="fa fa-chevron-left"></i> JavaScript 設計模式(筆記)_CH3_實字與建構式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Kidd Wang" />
+          <p class="site-author-name" itemprop="name">Kidd Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">不要睡了，起來上進</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#釐清術語的差異"><span class="nav-number">2.</span> <span class="nav-text">釐清術語的差異</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回呼模式"><span class="nav-number">3.</span> <span class="nav-text">回呼模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回傳函式"><span class="nav-number">4.</span> <span class="nav-text">回傳函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自我定義的函式"><span class="nav-number">5.</span> <span class="nav-text">自我定義的函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立即函式"><span class="nav-number">6.</span> <span class="nav-text">立即函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立即物件初始化"><span class="nav-number">7.</span> <span class="nav-text">立即物件初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始階段的分支"><span class="nav-number">8.</span> <span class="nav-text">初始階段的分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函式屬性-記憶模式"><span class="nav-number">9.</span> <span class="nav-text">函式屬性 - 記憶模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定值物件"><span class="nav-number">10.</span> <span class="nav-text">設定值物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curry"><span class="nav-number">11.</span> <span class="nav-text">Curry</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kidd Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kiddkid99.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://kiddkid99.github.io/study/javascript-design-pattern-ch4/';
+          this.page.identifier = 'study/javascript-design-pattern-ch4/';
+          this.page.title = 'JavaScript 設計模式(筆記)_CH4_函式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kiddkid99.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
